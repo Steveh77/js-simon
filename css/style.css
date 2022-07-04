@@ -3,3 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+#numbers-grid{
+    text-align: center;
+    padding: 50px;
+    font-size: 100px;
+}
+#timer-display{
+    text-align: center;
+    font-size: 50px;
+}
+
+.d-none{
+    display: none;
+}
