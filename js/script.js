@@ -13,15 +13,23 @@
 // variabili
 const numbersGrid = document.getElementById('numbers-grid');
 let randomNumbers = [];
-const chiedoNumeri = '';
-let numeriUtente = [];
+
 
  
 
+// for (let i = 0; i < 5; i++) {
+//     const element = (Math.floor(Math.random() * 101)+ 1);
+//     randomNumbers.push(element)
+//     numbersGrid.innerText = randomNumbers.join(" ")
+// }
 for (let i = 0; i < 5; i++) {
-    const element = (Math.floor(Math.random() * 101)+ 1);
-    randomNumbers.push(element)
-    numbersGrid.innerText = randomNumbers
+    const element = (Math.floor(Math.random() * 100)+ 1);
+    if (!randomNumbers.includes(element)) {
+        randomNumbers.push(element)
+        numbersGrid.innerText = randomNumbers.join(" ")
+    }else{
+        i--
+    }
 }
 
 console.log(randomNumbers)
@@ -38,13 +46,39 @@ const countdown = setInterval(function() {
         clearInterval(countdown);
         timerDisplay.innerText = "";
         numbersGrid.classList.add('d-none')
-        console.log("hello")
+        
         
     }
 
 }, 1000);
 
+// Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite i prompt().
+let numeriTrovati = [];
+let numeriUtente = [];
+
+setTimeout(function() {
+    for (let i = 1; i <= 5; i++) {
+        let userinput = parseInt(prompt(`scrivi il ${i} numero`));
+        numeriUtente.push(userinput) 
+        
+    }
+    //    confrontare randomNumbers e numeriUtente
+    let cont = 0;
+    for (let j = 0; j < randomNumbers.length; j++) {
+        if (numeriUtente.includes(randomNumbers[j])) {
+            cont = cont + 1
+            numeriTrovati.push(numeriUtente[j])
+        }
+        
+    }
+    console.log(`hai trovato ${cont} numeri`)
+    alert(`hai indovinato ${cont} numeri`)
+    
+}, 6000);
+
+console.log(numeriUtente)
+console.log(numeriTrovati)
 
 
-
+// Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
